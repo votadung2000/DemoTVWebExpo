@@ -15,9 +15,28 @@
             "topShelfWide2x": "./assets/images/icon-4640x1440.png"
           }
         }
+      ],
+      [
+        "react-native-permissions",
+        {
+          "iosPermissions": [
+            "Camera",
+            "Microphone"
+          ]
+        }
       ]
     ],
     "name": "DemoTVProject",
-    "slug": "DemoTVProject"
+    "slug": "DemoTVProject",
+    "ios": {
+      "infoPlist": {
+        
+      }
+    },
+    "android": {
+      "permissions": [
+        "android.permission.WRITE_SETTINGS"
+      ]
+    }
   }
 }
