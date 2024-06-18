@@ -76,6 +76,7 @@ const SettingScreen = () => {
                 >
                     <Text>Minus</Text>
                 </TouchableOpacity>
+                <Text style={styles.count}>{brightness.toFixed(1)}</Text>
                 <TouchableOpacity
                     onPress={handlePlus}
                     style={styles.btn}
@@ -100,17 +101,18 @@ const styles = StyleSheet.create({
         fontSize: 20,
     },
     stSlider: {
-        marginTop: 15,
-        width: 200,
+        marginTop: 30,
+        width: 250,
         height: 40,
     },
     vwAction: {
         width: '60%',
+        marginTop: 30,
         flexDirection: 'row',
         justifyContent: 'space-around',
+        alignItems: 'center',
     },
     btn: {
-        marginTop: 30,
         padding: 15,
         borderRadius: 15,
         backgroundColor: 'white',
