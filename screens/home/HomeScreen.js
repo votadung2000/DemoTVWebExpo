@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, View, Dimensions, ScrollView } from 'react-native'
+import { StyleSheet, View, Dimensions, ScrollView, Text, TouchableOpacity } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 
 import {
@@ -23,6 +23,14 @@ const HomeScreen = () => {
             showsVerticalScrollIndicator={false}
         >
             <View style={styles.content}>
+                <TouchableOpacity
+                    onPress={handleNav}
+                    style={styles.btn}
+                >
+                    <Text style={styles.txtBtn}>
+                        Go To Setting Screen
+                    </Text>
+                </TouchableOpacity>
                 <LineChartComponent
                     width={Dimensions.get('window').width - 16}
                     onPress={handleNav}
@@ -41,6 +49,18 @@ const styles = StyleSheet.create({
     },
     content: {
         paddingBottom: 50,
+    },
+    btn: {
+        marginTop: 60,
+        alignItems: 'center',
+        backgroundColor: 'orange',
+        alignSelf: 'center',
+        padding: 15,
+        borderRadius: 10,
+    },
+    txtBtn: {
+        fontWeight: '600',
+        color: 'white',
     },
 })
 
