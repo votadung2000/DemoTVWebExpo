@@ -20,6 +20,7 @@ const HomeScreen = () => {
         <ScrollView
             style={styles.container}
             bounces={false}
+            showsVerticalScrollIndicator={false}
         >
             <View style={styles.content}>
                 <LineChartComponent

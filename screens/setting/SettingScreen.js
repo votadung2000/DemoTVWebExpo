@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import * as Brightness from 'expo-brightness';
-import * as Permissions from 'expo-permissions';
 
 const SettingScreen = () => {
     const navigation = useNavigation();
@@ -14,24 +13,21 @@ const SettingScreen = () => {
     }, [])
 
     const handleInitBrightness = async () => {
-        const { status } = await Brightness.requestPermissionsAsync();
-        console.log("status", status)
-        if (status !== 'granted') {
+        const response = await Brightness.requestPermissionsAsync();
+        if (response?.status !== 'granted') {
             console.error('Quyền MODIFY_SCREEN_BRIGHTNESS bị từ chối.');
             return;
         } else {
             let brightness = await Brightness.getBrightnessAsync();
-            console.log("brightness", brightness)
             setBrightness(brightness)
         }
-
     }
 
     const handleNav = () => {
         navigation.goBack();
     }
 
-    const handlePlus = () => {
+    const handlePlus = async () => {
         let result = brightness + 0.1;
         if (result > 1) {
             result = 1
@@ -39,13 +35,10 @@ const SettingScreen = () => {
             result = 0.1
         }
         setBrightness(result)
-        console.log("result", result)
-        Brightness.setBrightnessAsync(result)
-            .then(result => console.log('result', result))
-            .catch(err => console.log('err', err));
+        await Brightness.setBrightnessAsync(result);
     }
 
-    const handleMinus = () => {
+    const handleMinus = async () => {
         let result = brightness - 0.1;
         if (result > 1) {
             result = 1
@@ -53,8 +46,7 @@ const SettingScreen = () => {
             result = 0.1
         }
         setBrightness(result)
-        console.log("result", result)
-        Brightness.setBrightnessAsync(result);
+        await Brightness.setBrightnessAsync(result);
     }
 
     return (
@@ -62,10 +54,16 @@ const SettingScreen = () => {
             <TouchableOpacity onPress={handleNav}>
                 <Text>Go Back</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={handlePlus}>
+            <TouchableOpacity
+                onPress={handlePlus}
+                style={styles.btn}
+            >
                 <Text>Plus</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={handleMinus}>
+            <TouchableOpacity
+                onPress={handleMinus}
+                style={styles.btn}
+            >
                 <Text>Minus</Text>
             </TouchableOpacity>
         </View>
@@ -79,5 +77,10 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-    }
+    },
+    btn: {
+        marginTop: 30,
+        backgroundColor: 'red',
+        padding: 15,
+    },
 })
