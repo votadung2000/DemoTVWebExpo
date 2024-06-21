@@ -1,5 +1,26 @@
 {
   "expo": {
+    "name": "DemoTVProject",
+    "slug": "DemoTVProject",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "ios": {
+      "buildNumber": 1,
+      "infoPlist": {},
+      "bundleIdentifier": "com.votadung.DemoTVProject"
+    },
+    "android": {
+      "versionCode": 1,
+      "permissions": [
+        "android.permission.WRITE_SETTINGS"
+      ],
+      "package": "com.votadung.DemoTVProject"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "b5c85116-1d5b-45df-96ad-5cac59b3354c"
+      }
+    },
     "plugins": [
       [
         "@react-native-tvos/config-tv",
@@ -25,18 +46,6 @@
           ]
         }
       ]
-    ],
-    "name": "DemoTVProject",
-    "slug": "DemoTVProject",
-    "ios": {
-      "infoPlist": {
-        
-      }
-    },
-    "android": {
-      "permissions": [
-        "android.permission.WRITE_SETTINGS"
-      ]
-    }
+    ]
   }
 }
